@@ -1,0 +1,16 @@
+{
+  "name": "casfee_project1_package",
+  "dependencies": {
+    "handlebars": "^4.7.6",
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "node-sass": "^4.14.1"
+  },
+  "scripts": {
+    "lint": "eslint",
+    "compile:sass": "node-sass --recursive --watch <sass directory> --output <css directory>",
+    "dev": "yarn run lint && yarn run compile:sass"
+  }
+}

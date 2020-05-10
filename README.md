@@ -11,7 +11,9 @@ Nothing here yet
 You need these:
 
 ```
-nodeJS
+* Prerequisites for node-sass
+* Yarn
+* ESLint
 ```
 
 ### Installing
