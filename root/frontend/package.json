@@ -10,7 +10,7 @@
   },
   "scripts": {
     "lint": "eslint",
-    "compile:sass": "node-sass --recursive --watch <sass directory> --output <css directory>",
-    "dev": "yarn run lint && yarn run compile:sass"
+    "sass": "node-sass --recursive --watch src/styling/ --output src/styling/",
+    "dev": "yarn run lint && yarn run sass"
   }
 }
