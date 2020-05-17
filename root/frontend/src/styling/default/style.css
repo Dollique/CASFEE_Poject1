@@ -1,3 +1,251 @@
+/**
+* Template: Default
+* Author: Tobias Marty
+**/
+
+/* CSS Variables */
+:root {
+    /* background colors */
+    --primary-bg-color: #AEAEAE;
+    --secondary-bg-color: #D3D3D3;
+
+    --main-bg-color: #E4E4E4;
+
+    --list-bg-color: #fff;
+    --list-title-bg-color: var(--primary-bg-color);
+    --list-item-one-bg-color: #DADADA;
+    --list-item-two-bg-color: #C3C3C3;
+
+    --options-bg-color: var(--secondary-bg-color);
+
+    --footer-bg-color: var(--secondary-bg-color);
+    --footer-hover-bg-color: var(--primary-bg-color);
+
+    /* colors */
+    --primary-color: #000;
+    --secondary-color: #8D8D8D;
+
+    /* boxes */
+    --list-min-width: 400px;
+    --options-min-width: 300px;
+}
+
+
+/* fonts */
+@font-face {
+    font-family: SegoeUI;
+    src:
+        local("Segoe UI Light"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2) format("woff2"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff) format("woff"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf) format("truetype");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: SegoeUI;
+    src:
+        local("Segoe UI Semilight"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff2) format("woff2"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff) format("woff"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.ttf) format("truetype");
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: SegoeUI;
+    src:
+        local("Segoe UI"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2) format("woff2"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff) format("woff"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: SegoeUI;
+    src:
+        local("Segoe UI Semibold"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.woff2) format("woff2"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.woff) format("woff"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.ttf) format("truetype");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: SegoeUI;
+    src:
+        local("Segoe UI Bold"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff2) format("woff2"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff) format("woff"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.ttf) format("truetype");
+    font-weight: 700;
+}
+
+
+/* general */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    font-family: SegoeUI;
+    font-weight: 400;
+    color: var(--primary-color);
+
+    text-decoration: none;
+}
+
+/* HTML */
+html {
+    height: 100%;
+}
+
+/* Body */
 body {
-  background-color: #E4E4E4;
-  color: #000; }
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 111px;
+
+    height: 100%;
+
+    grid-gap: 57px;
+    margin: 0 140px;
+    padding-top: 100px;
+
+    background-color: var(--main-bg-color);
+}
+
+
+/* lists */
+.list__wrapper {
+    display: flex;
+
+    overflow-x: scroll;
+    scrollbar-width: none; /* hide scrollbar */
+    -ms-overflow-style: none;
+}
+.list__wrapper::-webkit-scrollbar { /* hide scrollbar WebKit */
+    width: 0;
+    height: 0;
+}
+
+.list {
+    margin-right: 134px;
+    min-width: var(--list-min-width);
+}
+
+.list header {
+    display: flex;
+    flex: 0 1 100%;
+    align-items: center;
+
+    margin-bottom: 55px;
+
+    background-color: var(--list-title-bg-color);
+    border-radius: 1rem;
+}
+.list header h1 {
+    margin-left: 20px;
+    padding: 25px 10px;
+}
+.list header button {
+    margin-left: auto;
+    margin-right: 20px;
+
+    background-color: inherit;
+    border: none;
+    font-size: 1.5rem;
+}
+
+.list__inner {
+    display: grid;
+    grid-template-rows: 76px 1fr 90px;
+}
+.list__inner button {
+    background-color: inherit;
+    border: none;
+    font-size: 1.5rem;
+
+    background-color: var(--list-bg-color);
+    border-radius: 1rem 1rem 0 0;
+}
+.list__inner ul {
+    background-color: var(--list-bg-color);
+}
+.list__inner ul li {
+    display: grid;
+    grid-template-columns: 20px 2fr 1fr 20px;
+
+    padding: 20px 30px
+}
+.list__inner ul li:nth-child(odd) {
+    background-color: var(--list-item-one-bg-color);
+}
+.list__inner ul li:nth-child(even) {
+    background-color: var(--list-item-two-bg-color);
+}
+
+.list__inner ul li input {
+
+}
+.list__inner ul li label {
+
+}
+.list__inner ul li .date {
+    color: var(--secondary-color);
+}
+.list__inner ul li .prio {
+
+}
+
+.list__inner .settings {
+    display: flex;
+    justify-content: flex-end;
+    
+    background-color: var(--list-bg-color);
+    border-radius: 0 0 1rem 1rem;
+}
+.list__inner .settings svg {
+    margin: 20px;
+}
+
+
+/* Options */
+aside {
+    position: fixed;
+    right: 0;
+
+    min-width: var(--options-min-width);
+    padding: 30px 35px;
+
+    background-color: var(--options-bg-color);
+    border-radius: 1rem 0 0 1rem;
+}
+
+
+/* footer */
+footer {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 100%;
+    align-content: center;
+
+    padding: 0 66px;
+
+    background-color: var(--footer-bg-color);
+    border-radius: 1rem 1rem 0 0;
+}
+
+footer ul {
+    display: flex;
+    height: 100%;
+}
+footer ul li {
+    height: 100%;
+}
+footer ul li a {
+    display: block;
+    
+}

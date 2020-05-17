@@ -5,12 +5,9 @@
     "jquery": "^3.5.1"
   },
   "devDependencies": {
-    "eslint": "^7.0.0",
-    "node-sass": "^4.14.1"
+    "eslint": "^7.0.0"
   },
   "scripts": {
-    "lint": "eslint",
-    "sass": "node-sass --recursive --watch src/styling/ --output src/styling/",
-    "dev": "yarn run lint && yarn run sass"
+    "lint": "eslint"
   }
 }
