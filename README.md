@@ -11,13 +11,35 @@ Nothing here yet
 You need these:
 
 ```
-* Prerequisites for node-sass
 * Yarn
 * ESLint
+* NodeJS > 12.x
 ```
 
-### Installing
+Info: This project uses ES6 and ESM for JS and NodeJS.
+Babel is not yet set up.
 
+### Installing dependencies
+
+Frontend
+```
+cd .\root\frontend\
+yarn
+```
+
+Backend
+```
+cd .\root\backend\
+yarn
+```
+
+## Running NodeJS
+
+```
+cd .\root\backend\
+yarn run start
+```
+will run nodemon
 
 ## Running the tests
 

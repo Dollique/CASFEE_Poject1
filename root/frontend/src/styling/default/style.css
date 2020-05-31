@@ -97,6 +97,10 @@
     text-decoration: none;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* HTML */
 html {
     height: 100%;
@@ -156,7 +160,8 @@ body {
 
     background-color: inherit;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    line-height: 1.5;
 }
 
 .list__inner {
@@ -166,7 +171,7 @@ body {
 .list__inner button {
     background-color: inherit;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
 
     background-color: var(--list-bg-color);
     border-radius: 1rem 1rem 0 0;
@@ -191,9 +196,17 @@ body {
 
 }
 .list__inner ul li label {
-
+    display: flex;
+    align-items: center;
+    
+    padding-left: 15px;
 }
 .list__inner ul li .date {
+    display: flex;
+    align-items: center;
+
+    padding: 0 15px;
+
     color: var(--secondary-color);
 }
 .list__inner ul li .prio {
@@ -229,8 +242,8 @@ aside {
 footer {
     display: grid;
     grid-template-columns: 4fr 1fr;
-    grid-template-rows: 100%;
-    align-content: center;
+    /*grid-template-rows: 100%;*/
+    column-gap: 25px;
 
     padding: 0 66px;
 
@@ -238,14 +251,39 @@ footer {
     border-radius: 1rem 1rem 0 0;
 }
 
-footer ul {
+footer nav {
+
+}
+
+footer nav ul {
     display: flex;
+    justify-content: flex-start;
     height: 100%;
 }
-footer ul li {
-    height: 100%;
+footer nav ul li {
+    display: flex;
 }
-footer ul li a {
-    display: block;
-    
+footer nav ul li a {
+    display: flex;
+    align-items: center;
+
+    padding: 0 40px;
+
+    position: relative;
+}
+footer nav ul li a:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 11px;
+}
+footer nav ul li a:hover:before {
+    background-color: var(--primary-bg-color);
+}
+
+footer .license {
+    display: flex;
+    align-items: center;
 }
