@@ -1,9 +1,15 @@
 import List from './modules/list.js';
+import Router from './routings/router.js';
 import express from 'express';
 
 class App {
     constructor() {
         this.app = express();
+    }
+
+    routeTo() {
+        this.route = new Router(express);
+        this.route.getRoute();
     }
 
     getList() {
@@ -19,5 +25,5 @@ class App {
 }
 
 const boot = new App;
-boot.getList();
+boot.routeTo();
 boot.startServer();

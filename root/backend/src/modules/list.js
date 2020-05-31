@@ -1,6 +1,6 @@
 export default class List {
     constructor(app) {
-        this.app = app;
+       this.app = app;
     }
 
     getData() {
