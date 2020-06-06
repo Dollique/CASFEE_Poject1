@@ -5,6 +5,19 @@
         <title>CASFEE Project 1 - Tobias Marty</title>
         
         <script src="./bootstrapper.js" type="module"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        
+        <!-- HANDLEBARS -->
+        <script id="list-items" type="text/x-handlebars-template">
+            {{#each this}}
+            <li>
+                <input data-id="{{id}}" id="todoItem-{{id}}" type="checkbox" />
+                <label for="todoItem-{{id}}">{{name}}</label>
+                <img data-prio="{{prio}}" class="prio prio-{{prio}}" src="" />
+            </li>
+            {{/each}}
+        </script>
     </head>
     <body>
         <section class="list__wrapper">

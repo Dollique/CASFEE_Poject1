@@ -10,6 +10,7 @@ export class ListItemController {
     }
 
     loadListItems() {
+        return this.listItems;
     }
 
     /* append the list items to the DOM */
@@ -19,10 +20,7 @@ export class ListItemController {
 
         if(!typeof undefined) {
             getEl.innerHTML = this.listItems;
-        }   
-
-        //getEl.innerHTML = this.listItems;
-        console.log(this.listItems);
+        }
     }
 
     onAddListItemClick() {
@@ -33,21 +31,25 @@ export class ListItemController {
     }
 
     onEditItemBlur() {
-        document.querySelector(".list__inner ul li input").addEventListener("blur", (el) => {
-            this.addNewItem(el.target.value); // context of this is changed to the <button>
+        document.querySelector(".list__inner ul").addEventListener("focusout", (el) => { // event bubbling does not work on blur
+            if(el.target.className == "addNewItem") { // event bubbling
+                if(this.addNewItem(el.target.value)) { // context of this is changed to the <button>
+                    console.log("TEST"); // REMOVE FORM OR RE RENDER?
+                }
+            }
         });
     }
 
     addNewItemForm(self) {
         let itemForm = self.listItem.addListItemForm();
-
-        // TODO: CHANGE TO APPEND NOT REPLACE
-        document.querySelector(".list__inner ul").innerHTML = itemForm;
+        
+        document.querySelector(".list__inner ul").insertAdjacentHTML('afterbegin', itemForm);
     }
 
     addNewItem(item) {
         // add item to localStorage
-        this.listItemStorage.addListItem(item);
+        
+        return this.listItemStorage.addListItem(item); // returns boolean
 
         // TODO: re-render DOM to show new item?
     }

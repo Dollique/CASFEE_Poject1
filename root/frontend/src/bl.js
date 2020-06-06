@@ -8,7 +8,7 @@ export class ListItem {
     
     addListItemForm() {
        let newEl = `<li>
-            <input type="text" placeholder="New List Item" />
+            <input class="addNewItem" type="text" placeholder="New List Item" />
         </li>`;
 
         return newEl;
