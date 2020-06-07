@@ -21,7 +21,7 @@ export class ListItemStorage {
     }
 
     addListItem(item) {
-        if(this.validateListItem()) {
+        if(this.validateListItem(item)) {
             // 1. get listItemArr from localStorage + ID
             
             let itemID = this.getLastItemId() + 1;
@@ -35,7 +35,7 @@ export class ListItemStorage {
             
             return true;
         } else {
-            console.error("check input field");
+            console.warn("input validation error");
             return false;
         }
     }
@@ -50,7 +50,11 @@ export class ListItemStorage {
     }
     
     validateListItem(item) {
-        return true; // TODO: add validation logic
+        if(typeof item == "undefined" || item === "") {
+            return false;
+        }
+
+        return true;
     }
 }
 
