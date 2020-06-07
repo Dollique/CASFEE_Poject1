@@ -1,5 +1,6 @@
 import {ListItem} from '../bl.js';
 import {ListItemStorage} from '../dl.js';
+import {HBlistItems} from './handlebars.js';
 
 
 export class ListItemController {
@@ -13,45 +14,58 @@ export class ListItemController {
         return this.listItems;
     }
 
-    /* append the list items to the DOM */
-    appendListItems() {
-        // add this.listItems to DOM
-        const getEl = document.querySelector(".list__inner ul");
+    initEventListeners() {
+        document.querySelector(".list__inner button").addEventListener("click", () => this.onAddListItemClick()); // context of this is changed to the <button>
 
-        if(!typeof undefined) {
-            getEl.innerHTML = this.listItems;
-        }
-    }
+        document.querySelector(".list__inner ul").addEventListener("focusout", () => { // event bubbling does not work on blur
+            if(event.target.className == "addNewItem") { // event bubbling
+                this.onSetItemBlur(event.target.value);
+            }
 
-    onAddListItemClick() {
-        document.querySelector(".list__inner button").addEventListener("click", () => {
-            this.addNewItemForm(this); // context of this is changed to the <button>
-            this.onEditItemBlur();
+            if(event.target.className == "editListItem") {
+                this.onSetItemBlur(event.target.value, event.target.parentNode.dataset.id);
+            }
         });
-    }
 
-    onEditItemBlur() {
-        document.querySelector(".list__inner ul").addEventListener("focusout", (el) => { // event bubbling does not work on blur
-            if(el.target.className == "addNewItem") { // event bubbling
-                if(this.addNewItem(el.target.value)) { // context of this is changed to the <button>
-                    console.log("TEST"); // REMOVE FORM OR RE RENDER?
-                }
+        document.querySelector(".list__inner ul").addEventListener("click", () => {
+            if(event.target.tagName == "LABEL") {
+                event.preventDefault(); // disable checkbox functionality
+                this.onEditListItemClick(event.target.parentNode.dataset.id, event.target.textContent);
             }
         });
     }
 
-    addNewItemForm(self) {
-        let itemForm = self.listItem.addListItemForm();
-        
-        document.querySelector(".list__inner ul").insertAdjacentHTML('afterbegin', itemForm);
+    onAddListItemClick() {
+        let itemForm = this.listItem.addListItemForm();
+        document.querySelector(".list__inner ul").insertAdjacentHTML('afterbegin', itemForm); 
     }
 
-    addNewItem(item) {
-        // add item to localStorage
-        
-        return this.listItemStorage.addListItem(item); // returns boolean
+    onSetItemBlur(value, id = Number()) {
+        //console.log("target", value);
+        if(this.listItem.validateListItem(value)) {
+            if(this.setItem(value, id)) { // context of this is changed to the <button>
+                new HBlistItems().setHBlistItems(this.listItemStorage.getListItems());
+            }
+        } else {
+            console.warn("input validation error");
+        }
+    }
 
-        // TODO: re-render DOM to show new item?
+    onEditListItemClick(id, value) {
+        id = Number(id);
+        let editForm = this.listItem.editListItemForm(value);
+        document.querySelector(".list__inner ul li[data-id='"+id+"'] label").outerHTML = editForm;
+    }
+
+
+    setItem(item, id) {
+        if(id === 0) {
+            // add item to localStorage
+            return this.listItemStorage.addListItem(item); // returns boolean
+        } else {
+            // edit item in localStorage
+            return this.listItemStorage.editListItem(id, item); // returns boolean
+        }
     }
 
 }

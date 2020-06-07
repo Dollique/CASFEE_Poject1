@@ -13,4 +13,17 @@ export class ListItem {
 
         return newEl;
     }
+
+    editListItemForm(value) {
+        let newEl = `<input class="editListItem" type="text" placeholder="${value}" value="${value}" />`;
+        return newEl;
+     }
+
+     validateListItem(item) {
+        if(typeof item == "undefined" || item === "") {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -4,11 +4,13 @@ export class HBlistItems {
     }
 
     setHBlistItems(items) {
-        var template = document.querySelector("#list-items").innerHTML;
-        var templateScript = Handlebars.compile(template);
-
-        var html = templateScript(items);
+        let template = document.querySelector("#list-items").innerHTML;
+        let templateScript = Handlebars.compile(template);
+        
+        let html = templateScript(items);
+        document.querySelector(".list__inner ul").textContent = "";
         document.querySelector(".list__inner ul").insertAdjacentHTML("beforeend", html);
+        //document.querySelector(".list__inner ul").textContent = html;
     }
     
 }

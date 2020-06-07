@@ -6,11 +6,15 @@ import {HBlistItems} from './controller/handlebars.js';
 class Bootstrapper {
     constructor() {
         this.templateController = new TemplateController().appendStyleToHead();
+        
         //const listController = new ListController();
-        this.listItemController = new ListItemController();
 
-        this.listItemController.appendListItems();
-        this.listItemController.onAddListItemClick();
+        this.listItemController = new ListItemController();
+        //this.listItemController.appendListItems();
+        this.listItemController.initEventListeners();
+
+        this.hb = new HBlistItems();
+        this.hb.setHBlistItems(this.getItemList());
     }
 
     getItemList() { // for handlebars
@@ -22,6 +26,4 @@ class Bootstrapper {
 document.addEventListener('DOMContentLoaded', () => {
     let start = new Bootstrapper;
     const itemList = start.getItemList();
-
-    new HBlistItems().setHBlistItems(itemList);
 });

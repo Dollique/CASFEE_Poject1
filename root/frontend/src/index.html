@@ -11,10 +11,8 @@
         <!-- HANDLEBARS -->
         <script id="list-items" type="text/x-handlebars-template">
             {{#each this}}
-            <li>
-                <input data-id="{{id}}" id="todoItem-{{id}}" type="checkbox" />
-                <label for="todoItem-{{id}}">{{name}}</label>
-                <img data-prio="{{prio}}" class="prio prio-{{prio}}" src="" />
+            <li data-id="{{id}}">
+                <input id="todoItem-{{id}}" type="checkbox" /><label for="todoItem-{{id}}">{{name}}</label><img data-prio="{{prio}}" class="prio prio-{{prio}}" src="" />
             </li>
             {{/each}}
         </script>

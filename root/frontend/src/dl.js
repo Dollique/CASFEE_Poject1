@@ -21,23 +21,38 @@ export class ListItemStorage {
     }
 
     addListItem(item) {
-        if(this.validateListItem(item)) {
-            // 1. get listItemArr from localStorage + ID
-            
-            let itemID = this.getLastItemId() + 1;
-            let myItem = {'id': itemID, 'name': item, prio: 1};
+        // 1. get listItemArr from localStorage + ID
+        
+        let itemID = this.getLastItemId() + 1;
+        let myItem = {'id': itemID, 'name': item, prio: 1};
 
-            // 2. append to listItemArr
-            this.listItemArr.push(myItem);
+        // 2. append to listItemArr
+        this.listItemArr.push(myItem);
 
-            // 3. replace listItemArr in localStorage
-            localStorage.setItem('listItemArr', JSON.stringify(this.listItemArr));
-            
-            return true;
-        } else {
-            console.warn("input validation error");
-            return false;
-        }
+        // 3. replace listItemArr in localStorage
+        this.overwriteStorage(this.listItemArr);
+        
+        return true; // no error
+    }
+
+    editListItem(id, item) {
+        // 1. get Object with ID id from listItemArr
+        // 2. change content of name (item) and write whole array to temp variable
+        let obj = this.listItemArr.map((object) => {
+            if(object.id == id) {
+                object.name = item;
+            }
+            return object;
+        });
+
+        // 3. overwrite current listItemArr with content of new temp variable
+        this.overwriteStorage(obj);
+
+        return true; // no error
+    }
+
+    overwriteStorage(newObject) {
+        localStorage.setItem('listItemArr', JSON.stringify(newObject));
     }
 
     getLastItemId() {
@@ -48,15 +63,9 @@ export class ListItemStorage {
         
         return getID;
     }
-    
-    validateListItem(item) {
-        if(typeof item == "undefined" || item === "") {
-            return false;
-        }
-
-        return true;
-    }
 }
+
+
 
 
 
