@@ -24,7 +24,7 @@ export class ListItemStorage {
         // 1. get listItemArr from localStorage + ID
         
         let itemID = this.getLastItemId() + 1;
-        let myItem = {'id': itemID, 'name': item, prio: 1};
+        let myItem = {'id': itemID, 'name': item, date: null, prio: 1};
 
         // 2. append to listItemArr
         this.listItemArr.push(myItem);
@@ -35,12 +35,18 @@ export class ListItemStorage {
         return true; // no error
     }
 
-    editListItem(id, item) {
+    editListItem(id, item, field) {
         // 1. get Object with ID id from listItemArr
         // 2. change content of name (item) and write whole array to temp variable
         let obj = this.listItemArr.map((object) => {
             if(object.id == id) {
-                object.name = item;
+                if(field === "prio") {
+                    object.prio = item;
+                } else if(field === "date") {
+                    object.date = item;
+                } else {
+                    object.name = item;
+                }
             }
             return object;
         });

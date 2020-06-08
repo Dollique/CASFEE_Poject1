@@ -19,9 +19,31 @@ export class ListItem {
         return newEl;
      }
 
-     validateListItem(item) {
-        if(typeof item == "undefined" || item === "") {
+     editListItemPrio(value) {
+        let newEl = `<input class="editListItemPrio" type="number" min="1" max="3" value="${value}" />`;
+        return newEl;
+     }
+
+     editListItemDate(value) {
+        let newEl = `<input class="editListItemDate" type="date" value="${value}" />`;
+        return newEl;
+     }
+
+     // validate input
+     validateListItem(value, field) {
+        if(typeof value == "undefined" || value === "" && field !== "date") {
             return false;
+        }
+
+        if(field === "prio") {
+            value = Number(value);
+            if(typeof value !== "number" || value < 1 || value > 3) {
+                return false;
+            }
+        }
+
+        if(field === "date") {
+            // TODO: Check if date is valid
         }
 
         return true;

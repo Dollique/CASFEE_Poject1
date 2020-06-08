@@ -212,6 +212,13 @@ body {
 .list__inner ul li .prio {
 
 }
+.list__inner ul li .editListItemPrio {
+    width: 30px;
+
+    position: relative;
+    right: 30px;
+}
+
 
 .list__inner .settings {
     display: flex;

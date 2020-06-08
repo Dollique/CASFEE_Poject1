@@ -10,7 +10,6 @@ class Bootstrapper {
         //const listController = new ListController();
 
         this.listItemController = new ListItemController();
-        //this.listItemController.appendListItems();
         this.listItemController.initEventListeners();
 
         this.hb = new HBlistItems();
