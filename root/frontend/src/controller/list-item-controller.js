@@ -1,13 +1,13 @@
 import {ListItem} from '../bl.js';
-import {ListItemStorage} from '../dl.js';
 import {HBlistItems} from './handlebars.js';
 
 
 export class ListItemController {
     constructor() {
         this.listItem = new ListItem();
-        this.listItemStorage = new ListItemStorage();
-        this.listItems = this.listItemStorage.getListItems();
+        this.listItems = this.listItem.getItems();
+
+        this.hb = new HBlistItems(this.loadListItems());
     }
 
     loadListItems() {
@@ -18,7 +18,10 @@ export class ListItemController {
         /* CLICK HANDLERS */
 
         // new
-        document.querySelector(".list__inner button").addEventListener("click", () => this.onAddListItemClick()); // context of this is changed to the <button>
+        document.querySelector(".list__inner button").addEventListener("click", () => this.onAddListItemClick());
+        
+        // settings
+        document.querySelector(".list__inner .settings").addEventListener("click", () => this.onListSettingsClick());
 
         // edit
         document.querySelector(".list__inner ul").addEventListener("click", () => {
@@ -69,6 +72,13 @@ export class ListItemController {
                 this.onSetItemBlur(event.target.value, event.target.parentNode.dataset.id, "date");
             }
         });
+
+        document.querySelector("aside").addEventListener("change", () => {
+            if(event.target.id == "sortList") { // event bubbling
+                this.onChangeSorting(event.target.value);
+            }
+            
+        });
     }
 
 
@@ -102,26 +112,29 @@ export class ListItemController {
     onSetItemBlur(value, id = Number(), field = "name") {
         //console.log("target", value);
         if(this.listItem.validateListItem(value, field)) {
-            if(this.setItem(value, id, field)) {
-                new HBlistItems().setHBlistItems(this.listItemStorage.getListItems());
+            if(this.listItem.setItem(value, id, field)) {
+                this.hb.renderSortedListItems();
             }
         } else {
             console.warn("input validation error");
         }
     }
 
-    setItem(item, id, field) {
-        if(id === 0) {
-            // add item to localStorage
-            return this.listItemStorage.addListItem(item); // returns boolean
-        } else if(field === "prio") {
-            return this.listItemStorage.editListItem(id, item, "prio");
-        } else if(field === "date") {
-            return this.listItemStorage.editListItem(id, item, "date");
-        } else {
-            // edit item in localStorage
-            return this.listItemStorage.editListItem(id, item); // returns boolean
-        }
+
+    onListSettingsClick() {
+        this.hb.setHBSettings();
+    }
+
+    onChangeSorting(value) {
+        let sortedValue = this.getSortValue(value);
+        this.hb.renderSortedListItems(sortedValue.sortby, sortedValue.order);
+    }
+
+    getSortValue(value) {
+        let valArr = value.split("_");
+        var myobj = JSON.parse('{ "sortby":"'+ valArr[0] +'", "order":"'+ valArr[1] +'" }');
+
+        return myobj;
     }
 
 }

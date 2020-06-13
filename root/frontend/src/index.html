@@ -6,7 +6,8 @@
         
         <script src="./bootstrapper.js" type="module"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <!--script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script-->
+        <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
         
         <!-- HANDLEBARS -->
         <script id="list-items" type="text/x-handlebars-template">
@@ -19,6 +20,30 @@
                 <img data-prio="{{prio}}" class="prio prio-{{prio}}" src="assets/prio{{prio}}.svg" />
             </li>
             {{/each}}
+        </script>
+
+        <script id="settings-menu" type="text/x-handlebars-template">
+            <h1>List Options</h1>
+
+            <menu>
+                <form>
+                    <fieldset>
+                        <label for="sortList">Sorting</label>
+                        <select id="sortList">
+                            <option value="name_asc">Name, asc</option>
+                            <option value="name_desc">Name, desc</option>
+                            <option value="date_asc">Date, asc</option>
+                            <option value="date_desc">Date, desc</option>
+                            <option value="prio_asc">Prio, asc</option>
+                            <option value="prio_desc">Prio, desc</option>
+                        </select>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="filterList">Filter</label>
+                    </fieldset>
+                </form>
+            </menu>
         </script>
     </head>
     <body>
@@ -61,7 +86,7 @@
         </section>
         
         <aside>
-            <h1>List Options</h1>
+            
         </aside>
 
         <footer>

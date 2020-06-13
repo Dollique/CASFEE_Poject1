@@ -5,7 +5,7 @@ export class ListItemStorage {
     constructor() {
         this.listItemArr = localStorage.getItem('listItemArr');
 
-        if(this.listItemArr === null) {
+        if(this.listItemArr === null || this.listItemArr.length === 0) {
             this.listItemArr = [];
         } else {
             this.listItemArr = JSON.parse(this.listItemArr); // decode the stringified JSON array to array + object
@@ -13,11 +13,7 @@ export class ListItemStorage {
     }
 
     getListItems() {
-        if(this.listItemArr != null && this.listItemArr.length !== 0) {
-            return this.listItemArr;
-        }
-        
-        return;
+        return this.listItemArr;
     }
 
     addListItem(item) {
