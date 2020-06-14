@@ -15,8 +15,8 @@
             <li data-id="{{id}}">
                 <input class="done" id="todoItem-{{id}}" type="checkbox" {{#if done}}checked{{/if}} />
                 <label for="todoItem-{{id}}">{{name}}</label>
-
-                <span class="date">{{date}}</span>
+                
+                <span class="dueDate">{{dueDate}}</span>
                 <img data-prio="{{prio}}" class="prio prio-{{prio}}" src="assets/prio{{prio}}.svg" />
             </li>
             {{/each}}
@@ -32,8 +32,8 @@
                         <select id="sortList">
                             <option value="name_asc">Name, asc</option>
                             <option value="name_desc">Name, desc</option>
-                            <option value="date_asc">Date, asc</option>
-                            <option value="date_desc">Date, desc</option>
+                            <option value="dueDate_asc">Date, asc</option>
+                            <option value="dueDate_desc">Date, desc</option>
                             <option value="prio_asc">Prio, asc</option>
                             <option value="prio_desc">Prio, desc</option>
                         </select>
@@ -44,8 +44,8 @@
                         <input id="filterDone" type="checkbox">
                         <label for="filterDone">Done</label>
 
-                        <label for="filterDate">Date</label>
-                        <input id="filterDate" type="date">
+                        <label for="filterDueDate">Due date</label>
+                        <input id="filterDueDate" type="date">
 
                         <label for="filterPrio">Prio</label>
                         <input id="filterPrio" type="number" min="1" max="3">

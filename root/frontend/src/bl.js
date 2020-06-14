@@ -57,8 +57,8 @@ export class ListItem {
             }
         }
 
-        if(field === "date") {
-            // TODO: Check if date is valid
+        if(field === "dueDate") {
+            // TODO: Check if due date is valid
         }
 
         return true;

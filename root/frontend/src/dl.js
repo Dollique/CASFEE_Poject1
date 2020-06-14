@@ -20,7 +20,7 @@ export class ListItemStorage {
         // 1. get listItemArr from localStorage + ID
         
         let itemID = this.getLastItemId() + 1;
-        let myItem = {'id': itemID, 'name': item, done: false, date: null, prio: 1};
+        let myItem = {'id': itemID, 'name': item, done: false, dueDate: null, prio: 1};
 
         // 2. append to listItemArr
         this.listItemArr.push(myItem);
@@ -39,8 +39,8 @@ export class ListItemStorage {
                     object.done = value;
                 } else if(field === "prio") {
                     object.prio = value;
-                } else if(field === "date") {
-                    object.date = value;
+                } else if(field === "dueDate") {
+                    object.dueDate = value;
                 } else {
                     object.name = value;
                 }

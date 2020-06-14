@@ -41,8 +41,8 @@ export class ListItemController {
                 if(!document.querySelector(".list__inner ul li .editListItemPrio") && !document.querySelector(".list__inner ul li .editListItemDate")) {
                     this.onEditListItemPrioClick(event.target.parentNode.dataset.id, event.target.dataset.prio);
                     
-                    // edit date
-                    if(event.target.parentNode.querySelector(".date").innerHTML === "") {
+                    // edit due date
+                    if(event.target.parentNode.querySelector(".dueDate").innerHTML === "") {
                         this.onEditListItemDateClick(event.target.parentNode.dataset.id);
                     }
                 }
@@ -50,8 +50,8 @@ export class ListItemController {
                 
             }
 
-            // edit date
-            if(event.target.classList.contains("date")) {
+            // edit due date
+            if(event.target.classList.contains("dueDate")) {
                 if(!document.querySelector(".list__inner ul li .editListItemDate")) { // only execute once 
                     this.onEditListItemDateClick(event.target.parentNode.dataset.id, event.target.textContent);
                 }
@@ -74,7 +74,7 @@ export class ListItemController {
             }
 
             if(event.target.className == "editListItemDate") {
-                this.onSetItemBlur(event.target.value, event.target.parentNode.dataset.id, "date");
+                this.onSetItemBlur(event.target.value, event.target.parentNode.dataset.id, "dueDate");
             }
         });
 
@@ -113,14 +113,14 @@ export class ListItemController {
     // edit prio
     onEditListItemPrioClick(id, value) {
         let editForm = this.listItem.editListItemPrio(value);
-        document.querySelector(".list__inner ul li[data-id='"+id+"'] .prio").style.display='none'; // hide with css, so date click target still exists
+        document.querySelector(".list__inner ul li[data-id='"+id+"'] .prio").style.display='none'; // hide with css, so due date click target still exists
         document.querySelector(".list__inner ul li[data-id='"+id+"'] .prio").insertAdjacentHTML('afterend', editForm);
     }
 
-    /* edit date */
+    /* edit due date */
     onEditListItemDateClick(id, value = null) {
         let editForm = this.listItem.editListItemDate(value);
-        document.querySelector(".list__inner ul li[data-id='"+id+"'] .date").outerHTML = editForm;
+        document.querySelector(".list__inner ul li[data-id='"+id+"'] .dueDate").outerHTML = editForm;
     }
 
     /* save edits */
