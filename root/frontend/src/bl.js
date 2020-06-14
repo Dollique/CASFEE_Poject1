@@ -33,17 +33,13 @@ export class ListItem {
         return this.listItemStorage.getListItems();
     }
     
-    setItem(item, id, field) {
+    setItem(value, id, field) {
         if(id === 0) {
             // add item to localStorage
-            return this.listItemStorage.addListItem(item); // returns boolean
-        } else if(field === "prio") {
-            return this.listItemStorage.editListItem(id, item, "prio");
-        } else if(field === "date") {
-            return this.listItemStorage.editListItem(id, item, "date");
+            return this.listItemStorage.addListItem(value); // returns boolean
         } else {
             // edit item in localStorage
-            return this.listItemStorage.editListItem(id, item); // returns boolean
+            return this.listItemStorage.editListItem(id, value, field); // returns boolean
         }
     }
 

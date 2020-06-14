@@ -31,6 +31,11 @@ export class ListItemController {
                 this.onEditListItemClick(event.target.parentNode.dataset.id, event.target.textContent);
             }
 
+            // done (checkbox)
+            if(event.target.className == "done") {
+                this.onDoneListItemClick(event.target.parentNode.dataset.id, event.target.checked);
+            }
+
             // edit prio
             if(event.target.classList.contains("prio")) {
                 if(!document.querySelector(".list__inner ul li .editListItemPrio") && !document.querySelector(".list__inner ul li .editListItemDate")) {
@@ -81,7 +86,9 @@ export class ListItemController {
         });
     }
 
+    /* ACTIONS */
 
+    /* add list item */
     onAddListItemClick() {
         if(!document.querySelector(".list__inner ul .addItemForm")) { // only execute once
             let itemForm = this.listItem.addListItemForm();
@@ -89,12 +96,18 @@ export class ListItemController {
         }
     }
 
+    // edit list item
     onEditListItemClick(id, value) {
         if(!document.querySelector(".list__inner ul li .editListItem")) { // only execute once
             id = Number(id);
             let editForm = this.listItem.editListItemForm(value);
             document.querySelector(".list__inner ul li[data-id='"+id+"'] label").outerHTML = editForm;
         }
+    }
+
+    // click done checkbox
+    onDoneListItemClick(id, value) {
+        this.listItem.setItem(value, id, "done");
     }
 
     // edit prio
@@ -104,11 +117,13 @@ export class ListItemController {
         document.querySelector(".list__inner ul li[data-id='"+id+"'] .prio").insertAdjacentHTML('afterend', editForm);
     }
 
+    /* edit date */
     onEditListItemDateClick(id, value = null) {
         let editForm = this.listItem.editListItemDate(value);
         document.querySelector(".list__inner ul li[data-id='"+id+"'] .date").outerHTML = editForm;
     }
 
+    /* save edits */
     onSetItemBlur(value, id = Number(), field = "name") {
         //console.log("target", value);
         if(this.listItem.validateListItem(value, field)) {
@@ -120,7 +135,9 @@ export class ListItemController {
         }
     }
 
+    /* SETTINGS */
 
+    /* click settings */
     onListSettingsClick() {
         this.hb.setHBSettings();
     }
