@@ -1,20 +1,14 @@
-import List from './modules/list.js';
-import Router from './routings/router.js';
 import express from 'express';
+//import List from './modules/list.js';
+import {router} from './routes/router.js';
 
 class App {
     constructor() {
         this.app = express();
     }
 
-    routeTo() {
-        this.route = new Router(express);
-        this.route.getRoute();
-    }
-
-    getList() {
-        this.list = new List(this.app);
-        this.list.getData();
+    loadRoutes() {
+        router.getRoutes(this.app);
     }
 
     startServer() {
@@ -25,5 +19,5 @@ class App {
 }
 
 const boot = new App;
-boot.routeTo();
+boot.loadRoutes();
 boot.startServer();
