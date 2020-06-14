@@ -1,8 +1,9 @@
 // @todo: move this to NodeJS server
-
+import {Utils} from './utils.js';
 
 export class ListItemStorage {
     constructor() {
+        this.utils = new Utils();
         this.listItemArr = localStorage.getItem('listItemArr');
 
         if(this.listItemArr === null || this.listItemArr.length === 0) {
@@ -20,7 +21,15 @@ export class ListItemStorage {
         // 1. get listItemArr from localStorage + ID
         
         let itemID = this.getLastItemId() + 1;
-        let myItem = {'id': itemID, 'name': item, done: false, dueDate: null, prio: 1};
+        let myItem = {
+            'id': itemID,
+            'name': item,
+            done: false,
+            createDate: this.utils.toDate(),
+            finishDate: null,
+            dueDate: null,
+            prio: 1
+        };
 
         // 2. append to listItemArr
         this.listItemArr.push(myItem);
@@ -37,6 +46,12 @@ export class ListItemStorage {
             if(object.id == id) {
                 if(field === "done") {
                     object.done = value;
+
+                    if(value === true) {
+                        object.finishDate = this.utils.toDate();
+                    } else {
+                        object.finishDate = null;
+                    }
                 } else if(field === "prio") {
                     object.prio = value;
                 } else if(field === "dueDate") {

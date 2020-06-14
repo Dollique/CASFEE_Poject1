@@ -1,8 +1,10 @@
 // @todo: move this to NodeJS server
 import {ListItemStorage} from './dl.js';
+import {Utils} from './utils.js';
 
 export class ListItem {
     constructor() {
+        this.utils = new Utils();
         this.listItemStorage = new ListItemStorage();
     }
     
@@ -39,6 +41,7 @@ export class ListItem {
             return this.listItemStorage.addListItem(value); // returns boolean
         } else {
             // edit item in localStorage
+            value = (field === "dueDate") ? this.utils.toDate(value) : value;
             return this.listItemStorage.editListItem(id, value, field); // returns boolean
         }
     }

@@ -82,7 +82,10 @@ export class ListItemController {
             if(event.target.id == "sortList") { // event bubbling
                 this.onChangeSorting(event.target.value);
             }
-            
+
+            if(event.target.id == "filterDone") { // event bubbling
+                this.onChangeFilterDone(event.target.checked);
+            }
         });
     }
 
@@ -145,6 +148,11 @@ export class ListItemController {
     onChangeSorting(value) {
         let sortedValue = this.getSortValue(value);
         this.hb.renderSortedListItems(sortedValue.sortby, sortedValue.order);
+    }
+
+    onChangeFilterDone(value) {
+        let filter = {done: value};
+        this.hb.renderFilteredListItems(filter);
     }
 
     getSortValue(value) {

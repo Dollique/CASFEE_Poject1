@@ -32,8 +32,12 @@
                         <select id="sortList">
                             <option value="name_asc">Name, asc</option>
                             <option value="name_desc">Name, desc</option>
-                            <option value="dueDate_asc">Date, asc</option>
-                            <option value="dueDate_desc">Date, desc</option>
+                            <option value="finishDate_asc">Finish date, asc</option>
+                            <option value="finishDate_desc">Finish date, desc</option>
+                            <option value="createDate_asc">Creation date, asc</option>
+                            <option value="createDate_desc">Creation date, desc</option>
+                            <option value="dueDate_asc">Due date, asc</option>
+                            <option value="dueDate_desc">Due date, desc</option>
                             <option value="prio_asc">Prio, asc</option>
                             <option value="prio_desc">Prio, desc</option>
                         </select>
@@ -44,11 +48,29 @@
                         <input id="filterDone" type="checkbox">
                         <label for="filterDone">Done</label>
 
-                        <label for="filterDueDate">Due date</label>
+                        <!--label for="filterDueDate">Due date</label>
                         <input id="filterDueDate" type="date">
 
                         <label for="filterPrio">Prio</label>
                         <input id="filterPrio" type="number" min="1" max="3">
+
+                        <input class="resetFilter" type="button" value="reset"-->
+                    </fieldset>
+                </form>
+            </menu>
+        </script>
+
+        <script id="config-menu" type="text/x-handlebars-template">
+            <h1>Config</h1>
+
+            <menu>
+                <form>
+                    <fieldset>
+                        <label for="styleSwitcher">Style Switcher</label>
+                        <select id="styleSwitcher">
+                            <option value="default">Default</option>
+                            <option value="other">Other</option>
+                        </select>
                     </fieldset>
                 </form>
             </menu>
@@ -58,7 +80,7 @@
         <section class="list__wrapper">
             <div class="list">
                 <header>
-                    <h1>List Name</h1>
+                    <h1>To Do</h1>
                     <!--button>+</button-->
                 </header>
 
@@ -100,7 +122,7 @@
         <footer>
             <nav>
                 <ul>
-                    <li><a href="#">Settings</a></li>
+                    <li><a class="config" href="#">Settings</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Others</a></li>
                 </ul>

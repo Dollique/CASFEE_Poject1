@@ -201,7 +201,7 @@ body {
     
     padding-left: 15px;
 }
-.list__inner ul li .date {
+.list__inner ul li .dueDate {
     display: flex;
     align-items: center;
 

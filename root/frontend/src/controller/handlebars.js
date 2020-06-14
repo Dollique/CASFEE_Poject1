@@ -7,6 +7,8 @@ export class HBlistItems {
         this.sortby = sortby;
         this.order = order;
 
+        this.filter = {};
+
         this.items = this.utils.sortObjectItems(this.items);
     }
 
@@ -25,6 +27,11 @@ export class HBlistItems {
         order = (!order) ? this.order : order;
         
         return this.setHBlistItems(this.utils.sortObjectItems(this.items, sortby, order));
+    }
+
+    renderFilteredListItems(filterby) {
+        Object.assign(this.filter, filterby);
+        return this.setHBlistItems(this.utils.filterObjectItems(this.items, this.filter));
     }
 
     setHBSettings(content) {

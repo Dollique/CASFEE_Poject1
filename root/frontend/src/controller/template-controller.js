@@ -3,6 +3,16 @@ export class TemplateController {
         this.style = style
 
         this.createLink();
+        this.initEventListeners();
+    }
+
+    initEventListeners() {
+        // config
+        document.querySelector("footer .config").addEventListener("click", () => this.onConfigClick());
+    }
+
+    onConfigClick() {
+        console.log("Test");
     }
     
     createLink() {
