@@ -1,6 +1,6 @@
 import {Utils} from '../utils.js';
 export class HBlistItems {
-    constructor(items, sortby = "name", order = "asc") {
+    constructor(items = [], sortby = "name", order = "asc") {
         this.utils = new Utils();
 
         this.items = items;
@@ -34,8 +34,8 @@ export class HBlistItems {
         return this.setHBlistItems(this.utils.filterObjectItems(this.items, this.filter));
     }
 
-    setHBSettings(content) {
-        let template = document.querySelector("#settings-menu").innerHTML;
+    setHBSettings(menu = "settings-menu", content) {
+        let template = document.querySelector("#"+ menu).innerHTML;
         let templateScript = Handlebars.compile(template);
         
         let html = templateScript(content);
