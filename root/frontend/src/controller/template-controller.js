@@ -26,7 +26,6 @@ export class TemplateController {
     }
 
     onChangeStyle(value) {
-        console.log("style changed to:", value);
         let newLink = this.createLink(value);
         this.replaceStyle(newLink);
     }

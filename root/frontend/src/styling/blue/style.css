@@ -1,20 +1,20 @@
 /**
-* Template: Default
+* Template: Blue
 * Author: Tobias Marty
 **/
 
 /* CSS Variables */
 :root {
     /* background colors */
-    --primary-bg-color: #AEAEAE;
-    --secondary-bg-color: #D3D3D3;
+    --primary-bg-color: #90A9CC;
+    --secondary-bg-color: #90A9CC;
 
-    --main-bg-color: #E4E4E4;
+    --main-bg-color: #080F1C;
 
-    --list-bg-color: #fff;
+    --list-bg-color: #212C42;
     --list-title-bg-color: var(--primary-bg-color);
-    --list-item-one-bg-color: #DADADA;
-    --list-item-two-bg-color: #C3C3C3;
+    --list-item-one-bg-color: #1E60DD;
+    --list-item-two-bg-color: #123B8B;
 
     --options-bg-color: var(--secondary-bg-color);
 
@@ -22,8 +22,9 @@
     --footer-hover-bg-color: var(--primary-bg-color);
 
     /* colors */
-    --primary-color: #000;
-    --secondary-color: #8D8D8D;
+    --primary-color: #fff;
+    --primary-color-neg: #000;
+    --secondary-color: #B0C3E8;
 
     /* boxes */
     --list-min-width: 400px;
@@ -103,6 +104,7 @@ button {
 
 input,
 select {
+    color: var(--primary-color-neg);
     border: 1px solid;
     border-radius: 1rem 0 1rem;
     padding: 2px 20px;
@@ -156,8 +158,7 @@ body {
 }
 
 .list {
-    margin-right: 134px;
-    min-width: var(--list-min-width);
+    width: 100%
 }
 
 .list header {
