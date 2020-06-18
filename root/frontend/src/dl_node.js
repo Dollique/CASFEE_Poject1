@@ -4,6 +4,10 @@ import {Utils} from './utils.js';
 export class ListItemStorage {
     constructor() {
         this.utils = new Utils();
+
+        this.server = "http://localhost:3000";
+        this.body = [];
+
         this.listItemArr = localStorage.getItem('listItemArr');
 
         if(this.listItemArr === null || this.listItemArr.length === 0) {
@@ -14,7 +18,19 @@ export class ListItemStorage {
     }
 
     getListItems() {
-        return JSON.parse(localStorage.getItem('listItemArr'));
+        return fetch(this.server + '/list', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        }).then(function (res) {
+            return res.json(); // json() returns another promise
+        }).then(body => { // .then is called when json() is resolved
+            this.body = body;
+            return body;
+        });
+
+
+
+        //console.log(this.body);
     }
 
     addListItem(item) {

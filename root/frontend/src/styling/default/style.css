@@ -237,7 +237,10 @@ body {
 
 }
 .list__inner ul li .editListItemPrio {
-    width: 30px;
+    width: 50px;
+
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
 
     position: relative;
     right: 30px;

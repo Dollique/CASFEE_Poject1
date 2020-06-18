@@ -1,6 +1,7 @@
 export class Utils {
     sortObjectItems(object, sortby = "name", order = "asc") {
         let propComparator;
+        if(!object) return;
         
         if(order === "asc") {
             propComparator = (propName) => (a, b) => a[propName] == b[propName] ? 0 : this.makeLower(a[propName]) < this.makeLower(b[propName]) ? -1 : 1
@@ -13,6 +14,7 @@ export class Utils {
     
     filterObjectItems(object, filterby) {
         let res;
+        if(!object || object.length === 0 || !filterby) return object;
 
         // @TODO: Currently only works with "done" parameter
         for(let prop in filterby) {

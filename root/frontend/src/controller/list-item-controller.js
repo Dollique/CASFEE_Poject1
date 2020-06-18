@@ -1,12 +1,11 @@
 import {ListItem} from '../bl.js';
 import {HBlistItems} from './handlebars.js';
 
-
 export class ListItemController {
     constructor() {
         this.listItem = new ListItem();
         this.listItems = this.listItem.getItems();
-
+        
         this.hb = new HBlistItems(this.loadListItems());
     }
 
@@ -20,9 +19,6 @@ export class ListItemController {
         // new
         document.querySelector(".list__inner button").addEventListener("click", () => this.onAddListItemClick());
         
-        // settings
-        document.querySelector(".list__inner .settings").addEventListener("click", () => this.onListSettingsClick());
-
         // edit
         document.querySelector(".list__inner ul").addEventListener("click", () => {
             // edit item
@@ -77,16 +73,6 @@ export class ListItemController {
                 this.onSetItemBlur(event.target.value, event.target.parentNode.dataset.id, "dueDate");
             }
         });
-
-        document.querySelector("aside").addEventListener("change", () => {
-            if(event.target.id == "sortList") { // event bubbling
-                this.onChangeSorting(event.target.value);
-            }
-
-            if(event.target.id == "filterDone") { // event bubbling
-                this.onChangeFilterDone(event.target.checked);
-            }
-        });
     }
 
     /* ACTIONS */
@@ -131,35 +117,11 @@ export class ListItemController {
         //console.log("target", value);
         if(this.listItem.validateListItem(value, field)) {
             if(this.listItem.setItem(value, id, field)) {
-                this.hb.renderSortedListItems();
+                this.hb.renderList();
             }
         } else {
             console.warn("input validation error");
         }
-    }
-
-    /* SETTINGS */
-
-    /* click settings */
-    onListSettingsClick() {
-        this.hb.setHBSettings();
-    }
-
-    onChangeSorting(value) {
-        let sortedValue = this.getSortValue(value);
-        this.hb.renderSortedListItems(sortedValue.sortby, sortedValue.order);
-    }
-
-    onChangeFilterDone(value) {
-        let filter = {done: value};
-        this.hb.renderFilteredListItems(filter);
-    }
-
-    getSortValue(value) {
-        let valArr = value.split("_");
-        var myobj = JSON.parse('{ "sortby":"'+ valArr[0] +'", "order":"'+ valArr[1] +'" }');
-
-        return myobj;
     }
 
 }
