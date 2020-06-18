@@ -6,7 +6,7 @@ import {HBlistItems} from './controller/handlebars.js';
 
 class Bootstrapper {
     constructor() {
-        this.siteConfigController = new SiteConfigController().appendStyleToHead();
+        this.siteConfigController = new SiteConfigController().getStyle();
         
         //const listController = new ListController();
 

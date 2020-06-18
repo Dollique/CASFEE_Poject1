@@ -9,6 +9,12 @@ export class Style {
         link.setAttribute("type", "text/css");
         link.setAttribute("href", 'styling/'+ style +'/style.css');
 
+        this.style = style;
+
         return link;
+    }
+
+    saveStyle() {
+        localStorage.setItem('style', this.style);
     }
 }

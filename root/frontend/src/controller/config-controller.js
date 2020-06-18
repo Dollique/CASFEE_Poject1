@@ -4,7 +4,6 @@ import {Style} from '../bl_style.js';
 export class SiteConfigController {
     constructor() {
         this.style = new Style();
-        this.link = this.style.createLink();
 
         this.initEventListeners();
 
@@ -30,12 +29,31 @@ export class SiteConfigController {
         let newLink = this.style.createLink(value);
         this.replaceStyle(newLink);
     }
+    
+    getStyle() {
+        let link, style = this.getStyleFromStorage();
+        
+        if(style) {
+            link = this.style.createLink(style);
+        } else {
+            link = this.style.createLink();
+        }
 
-    appendStyleToHead() {
-        document.head.append(this.link);
+        this.appendStyleToHead(link);
     }
 
-    replaceStyle(link = this.link) {
+    getStyleFromStorage() {
+        return localStorage.getItem('style');
+    }
+
+    appendStyleToHead(link) {
+        document.head.append(link);
+    }
+
+    replaceStyle() {
+        this.style.saveStyle();
+
+        let link = this.style.createLink();
         let oldLink = document.head.querySelector('link[rel="stylesheet"]');
         document.head.replaceChild(link, oldLink);
     }
