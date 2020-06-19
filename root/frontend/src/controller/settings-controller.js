@@ -7,6 +7,18 @@ export class ListSettingsController {
         this.filter = new Filter();
         this.sort = new Sort();
 
+        this.sortItems = {sortItems: [
+            'Name, asc',
+            'Finish date, asc',
+            'Finish date, desc',
+            'Create date, asc',
+            'Create date, desc',
+            'Due date, asc',
+            'Due date, desc',
+            'Prio, asc',
+            'Prio, desc'
+        ]};
+
         this.hb = new HBlistItems();
     }
     
@@ -38,7 +50,7 @@ export class ListSettingsController {
 
     /* click settings */
     onListSettingsClick() {
-        this.hb.setHBSettings();
+        this.renderSettings();
     }
 
     onChangeSorting(value) {
@@ -49,15 +61,35 @@ export class ListSettingsController {
     }
 
     onChangeFilterDone(value) {
-        let filter = {done: value};
         this.filter.writeFilter('done', value);
         
         this.hb.renderList();
+        this.renderSettings();
+    }
+
+    renderSettings() {
+        let settings = this.getCurrentSettings();
+        this.hb.renderSettings('settings-menu', settings);
     }
 
     onFilterReset() {
         this.filter.resetFilter();
         this.hb.renderList();
+        this.renderSettings();
+    }
+
+    getCurrentSettings() {
+        let obj = {
+            sortItems: this.sortItems.sortItems,
+            filter: this.filter.getFilter(),
+            sort: this.getSortString(this.sort.getSort())
+        };
+
+        return obj;
+    }
+
+    getSortString(obj) {
+        return obj.sortby + "_" + obj.order;
     }
 
     getSortValue(value) {

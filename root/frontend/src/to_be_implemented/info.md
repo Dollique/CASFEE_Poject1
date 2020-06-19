@@ -1,0 +1,1 @@
+In this folder are files I prepared for functions that should be implemented some time in the future and didn't make it to the due date of the project.

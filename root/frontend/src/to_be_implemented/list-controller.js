@@ -20,7 +20,7 @@ export class ListController {
 
     appendList() {
         // add this.list to DOM
-        const getEl = document.querySelector(".list");
+        //const getEl = document.querySelector(".list");
         //getEl.innerHTML = this.list;
         console.log(this.list);
     }

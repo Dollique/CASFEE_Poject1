@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <title>CASFEE Project 1 - Tobias Marty</title>
         
-        <script src="./bootstrapper.js" type="module"></script>
-
         <!--script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script-->
         <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+        
+        <script src="./bootstrapper.js" type="module"></script>
         
         <!-- HANDLEBARS -->
         <script id="list-items" type="text/x-handlebars-template">
@@ -30,25 +30,20 @@
                     <fieldset>
                         <label for="sortList">Sorting</label>
                         <select id="sortList">
-                            <option value="name_asc">Name, asc</option>
-                            <option value="name_desc">Name, desc</option>
-                            <option value="finishDate_asc">Finish date, asc</option>
-                            <option value="finishDate_desc">Finish date, desc</option>
-                            <option value="createDate_asc">Creation date, asc</option>
-                            <option value="createDate_desc">Creation date, desc</option>
-                            <option value="dueDate_asc">Due date, asc</option>
-                            <option value="dueDate_desc">Due date, desc</option>
-                            <option value="prio_asc">Prio, asc</option>
-                            <option value="prio_desc">Prio, desc</option>
+                            {{#each sortItems}}
+                                <option value="{{sortValue this}}" {{#ifEquals @root.sort (sortValue this)}}selected{{/ifEquals}}>{{this}}</option>
+                            {{/each}}
                         </select>
                     </fieldset>
 
                     <fieldset class="filter">
                         <legend>Filter</legend>
-                        <input id="filterDone" type="checkbox">
+                        <input id="filterDone" type="checkbox" {{#if filter.done}}checked{{/if}}>
                         <label for="filterDone">Done</label>
-
+                        
+                        {{#ifExists filter}}
                         <button class="resetFilter" type="button">Reset</button>
+                        {{/ifExists}}
 
                         <!--label for="filterDueDate">Due date</label>
                         <input id="filterDueDate" type="date">
@@ -71,7 +66,7 @@
                         <label for="styleSwitcher">Style Switcher</label>
                         <select id="styleSwitcher">
                             <option value="default">Default</option>
-                            <option value="blue">Blue</option>
+                            <option value="blue" {{#ifEquals style 'blue'}}selected{{/ifEquals}}>Blue</option>
                         </select>
                     </fieldset>
                 </form>

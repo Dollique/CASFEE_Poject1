@@ -22,7 +22,7 @@ export class SiteConfigController {
     }
 
     onConfigClick() {
-        this.hb.setHBSettings("config-menu");
+        this.hb.renderSettings("config-menu", this.style);
     }
 
     onChangeStyle(value) {

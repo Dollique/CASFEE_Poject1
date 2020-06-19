@@ -23,12 +23,14 @@ export class Filter {
     writeFilter(filter, filterby) {
         let obj = new Object;
         obj[filter] = filterby;
+
         this.appendFilter(obj);
 
         return localStorage.setItem('filter', JSON.stringify(this.filter));
     }
 
     appendFilter(filter) {
+        if(!this.filter) this.filter = {};
         return Object.assign(this.filter, filter);
     }
 }

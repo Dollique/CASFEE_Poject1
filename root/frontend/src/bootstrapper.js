@@ -1,5 +1,4 @@
 import {SiteConfigController} from './controller/config-controller.js';
-//import {ListController} from './controller/list-controller.js';
 import {ListItemController} from './controller/list-item-controller.js';
 import {ListSettingsController} from './controller/settings-controller.js';
 import {HBlistItems} from './controller/handlebars.js';
@@ -7,8 +6,6 @@ import {HBlistItems} from './controller/handlebars.js';
 class Bootstrapper {
     constructor() {
         this.siteConfigController = new SiteConfigController().getStyle();
-        
-        //const listController = new ListController();
 
         this.listItemController = new ListItemController();
         this.listItemController.initEventListeners();
@@ -26,6 +23,5 @@ class Bootstrapper {
 
 // wait until scripts have been loaded
 document.addEventListener('DOMContentLoaded', () => {
-    let start = new Bootstrapper;
-    const itemList = start.getItemList();
+    new Bootstrapper;
 });

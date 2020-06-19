@@ -14,6 +14,8 @@ export class HBlistItems {
         this.order = order;
 
         this.items = this._renderSortedListItems();
+
+        this.setHelpers(); // set helpers
     }
 
     _setHBlistItems(items = this.items) {
@@ -47,11 +49,41 @@ export class HBlistItems {
         return this.utils.filterObjectItems(items, filter);
     }
 
-    setHBSettings(menu = "settings-menu", content) {
+
+    /* Settings & Config */
+    renderSettings(menu = "settings-menu", content) {
+        return this._setHBSettings(menu, content);
+    }
+
+    _setHBSettings(menu, content) {
         let template = document.querySelector("#"+ menu).innerHTML;
         let templateScript = Handlebars.compile(template);
         
         let html = templateScript(content);
         document.querySelector("aside").innerHTML = html;
+    }
+
+
+    /* HANDLEBARS HELPERS */
+    setHelpers() {
+        // -> https://stackoverflow.com/questions/34252817/handlebarsjs-check-if-a-string-is-equal-to-a-value
+        Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+            return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+        });
+
+        Handlebars.registerHelper('sortValue', (val) => this.getSortVal(val));
+
+        Handlebars.registerHelper('ifExists', function(obj, options) {
+            return (obj != null) ? options.fn(this) : '';
+        });
+    }
+
+    getSortVal(val) {
+        val = val.toLowerCase().replace(', ', '_').split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(''); // make first letter of every word uppercase
+        
+        val = val.charAt(0).toLowerCase() + val.slice(1); // make first letter lowercase
+
+        return val;
     }
 }

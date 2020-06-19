@@ -8,6 +8,6 @@
     "eslint": "^7.0.0"
   },
   "scripts": {
-    "lint": "eslint"
+    "lint": "eslint **/*.js"
   }
 }
