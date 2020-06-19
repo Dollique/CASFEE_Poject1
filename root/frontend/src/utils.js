@@ -4,9 +4,9 @@ export class Utils {
         if(!object) return;
         
         if(order === "asc") {
-            propComparator = (propName) => (a, b) => a[propName] == b[propName] ? 0 : this.makeLower(a[propName]) < this.makeLower(b[propName]) ? -1 : 1
+            propComparator = (propName) => (a, b) => a[propName] == b[propName] ? 0 : this.getComparableString(a[propName]) < this.getComparableString(b[propName]) ? -1 : 1
         } else {
-            propComparator = (propName) => (a, b) => a[propName] == b[propName] ? 0 : this.makeLower(a[propName]) > this.makeLower(b[propName]) ? -1 : 1
+            propComparator = (propName) => (a, b) => a[propName] == b[propName] ? 0 : this.getComparableString(a[propName]) > this.getComparableString(b[propName]) ? -1 : 1
         }
         
         return object.sort(propComparator(sortby));
@@ -22,6 +22,18 @@ export class Utils {
         }
 
         return res;
+    }
+
+    getComparableString(val) {
+        val = this.returnDate(val);
+        val = this.makeLower(val);
+
+        return val;
+    }
+
+    returnDate(val) {
+        if((new Date(val) !== "Invalid Date") && !isNaN(new Date(val))) return new Date(val);
+        return val;
     }
 
     makeLower(val) {
