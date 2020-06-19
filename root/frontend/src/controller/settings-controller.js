@@ -42,6 +42,10 @@ export class ListSettingsController {
             if(event.target.className == "resetFilter") { // event bubbling
                 this.onFilterReset();
             }
+
+            if(event.target.className == "closeSettings") { // event bubbling
+                this.onCloseSettings(event.target.parentNode);
+            }
         });
     }
 
@@ -66,6 +70,11 @@ export class ListSettingsController {
         this.hb.renderList();
         this.renderSettings();
     }
+
+    onCloseSettings(target) {
+        target.classList.remove('open');
+    }
+
 
     renderSettings() {
         let settings = this.getCurrentSettings();

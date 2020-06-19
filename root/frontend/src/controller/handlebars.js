@@ -52,6 +52,7 @@ export class HBlistItems {
 
     /* Settings & Config */
     renderSettings(menu = "settings-menu", content) {
+        document.querySelector("aside").classList.add("open");
         return this._setHBSettings(menu, content);
     }
 
