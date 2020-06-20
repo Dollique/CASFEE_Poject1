@@ -1,2 +1,2 @@
 node_modules
-root/backend/src/databases/*
+/root/backend/src/databases/*
