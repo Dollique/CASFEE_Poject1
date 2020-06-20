@@ -25,10 +25,14 @@ export class HBlistItems {
 
     /* render the list sorted/filtered */
     renderList(items = this.items) {
-        items = this._renderFilteredListItems(items);
-        items = this._renderSortedListItems(items);
-
-        return this._setHBlistItems(items);
+        Promise.resolve(items).then((obj) => { // Promise.resolve makes sure then() works even if `items` is not a promise
+            obj = this._renderFilteredListItems(obj);
+            obj = this._renderSortedListItems(obj);
+            
+            return this._setHBlistItems(obj); 
+        }, (err) => {
+            console.log("PROMISE ERR", err);
+        });
     }
 
     _renderSortedListItems(items) {     

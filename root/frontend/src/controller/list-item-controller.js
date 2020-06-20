@@ -8,14 +8,6 @@ export class ListItemController {
         this.hb = new HBlistItems();
     }
 
-    /*loadListItems() {
-        return this.listItem.getItems().then((succ) => {
-            this.hb = new HBlistItems(succ);
-        }, (err) => {
-            console.error("PROMISE ERR", err);
-        });
-    }*/
-
     loadListItems() {
         return this.listItem.getItems();
     }

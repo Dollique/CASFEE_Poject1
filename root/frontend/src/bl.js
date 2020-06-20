@@ -1,5 +1,5 @@
 // @todo: move this to NodeJS server
-import {ListItemStorage} from './dl.js'; // dl.js = localStorage, dl_node.js = node server
+import {ListItemStorage} from './dl_node.js'; // dl.js = localStorage, dl_node.js = node server
 import {Utils} from './utils.js';
 
 export class ListItem {

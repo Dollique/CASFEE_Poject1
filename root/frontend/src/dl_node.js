@@ -27,10 +27,6 @@ export class ListItemStorage {
             this.body = body;
             return body;
         });
-
-
-
-        //console.log(this.body);
     }
 
     addListItem(item) {
