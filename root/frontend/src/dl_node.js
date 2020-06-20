@@ -17,19 +17,24 @@ export class ListItemStorage {
         }
     }
 
-    getListItems() {
-        return fetch(this.server + '/list', {
+    async getListItems() {
+        const rawResponse = await fetch(this.server + '/list', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
-        }).then(function (res) {
-            return res.json(); // json() returns another promise
-        }).then(body => { // .then is called when json() is resolved
-            this.body = body;
-            return body;
         });
+        return await rawResponse.json(); // json() returns another promise
     }
 
-    addListItem(item) {
+    async addListItem(item) {
+        const rawResponse = await fetch(this.server + '/list', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({name: item})
+        })
+        return rawResponse;
+    }
+
+    /*addListItem(item) {
         // 1. get listItemArr from localStorage + ID
         
         let itemID = this.getLastItemId() + 1;
@@ -50,7 +55,7 @@ export class ListItemStorage {
         this.overwriteStorage(this.listItemArr);
         
         return true; // no error
-    }
+    }*/
 
     editListItem(id, value, field) {
         // get the list item array and change the value of the field

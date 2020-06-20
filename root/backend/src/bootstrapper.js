@@ -1,11 +1,12 @@
 import express from 'express';
-//import List from './modules/list.js';
 import {router} from './routes/router.js';
+import bodyParser from 'body-parser';
 
 class App {
     constructor() {
         this.app = express();
         this.initCORS();
+        this.initBodyParser();
     }
 
     initCORS() {
@@ -18,6 +19,10 @@ class App {
         };
         
         this.app.use(allowCrossDomain);
+    }
+
+    initBodyParser() {
+        this.app.use(bodyParser.json());
     }
 
     loadRoutes() {
