@@ -10,6 +10,11 @@ export class IndexController {
         res.end();
     }
 
+    async put(req, res) {
+        await this.listDB.editListItem(req.body.id, req.body.field, req.body.value);
+        res.end();
+    }
+
     async list(req, res) { 
         let data = await this.listDB.getAll();
         res.json(data);

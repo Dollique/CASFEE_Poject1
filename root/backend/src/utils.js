@@ -1,6 +1,6 @@
 export class Utils {
-    toDate(value = null, lang = "en-CA") { // en-CA will show value in input field (https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today)
+    toDate(value = null) { // https://stackoverflow.com/questions/10645994/how-to-format-a-utc-date-as-a-yyyy-mm-dd-hhmmss-string-using-nodejs
         let date = (!value) ? new Date() : new Date(value);
-        return date.toLocaleDateString(lang);
+        return date.toISOString().replace('T', ' ').substr(0, 19);
     }
 }
