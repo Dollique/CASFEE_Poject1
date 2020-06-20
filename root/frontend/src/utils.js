@@ -15,7 +15,7 @@ export class Utils {
     filterObjectItems(object, filterby) {
         let res;
         if(!object || object.length === 0 || !filterby) return object;
-
+        
         // @TODO: Currently only works with "done" parameter
         for(let prop in filterby) {
             res = object.filter(obj => obj.done == filterby[prop]);

@@ -1,50 +1,48 @@
 import {Utils} from '../utils.js';
 import {Filter} from '../service.js';
 import {Sort} from '../service.js';
-import {ListItem} from '../bl.js';
 export class HBlistItems {
     constructor(items = [], sortby = "name", order = "asc") {
         this.utils = new Utils();
         this.filter = new Filter();
         this.sort = new Sort();
-        this.listItem = new ListItem();
 
         this.items = items;
         this.sortby = sortby;
         this.order = order;
 
-        this.items = this._renderSortedListItems();
-
         this.setHelpers(); // set helpers
     }
 
-    _setHBlistItems(items = this.items) {
+    _setHBlistItems(items) {
         let template = document.querySelector("#list-items").innerHTML;
         let templateScript = Handlebars.compile(template);
         
         let html = templateScript(items);
         document.querySelector(".list__inner ul").textContent = "";
         document.querySelector(".list__inner ul").insertAdjacentHTML("beforeend", html);
-        //document.querySelector(".list__inner ul").textContent = html;
     }
 
     /* render the list sorted/filtered */
-    renderList() {
-        this.items = this._renderFilteredListItems();
-        this.items = this._renderSortedListItems();
+    renderList(items = this.items) {
+        items = this._renderFilteredListItems(items);
+        items = this._renderSortedListItems(items);
 
-        return this._setHBlistItems(this.items);
+        return this._setHBlistItems(items);
     }
 
-    _renderSortedListItems() {     
+    _renderSortedListItems(items) {     
         let sort = this.sort.getSort();
-        return this.utils.sortObjectItems(this.items, sort.sortby, sort.order);
+
+        if(sort === null) {
+            sort = this.sort.getDefaultSort();
+        }
+
+        return this.utils.sortObjectItems(items, sort.sortby, sort.order);
     }
 
-    _renderFilteredListItems() {
+    _renderFilteredListItems(items) {
         let filter = this.filter.getFilter();
-        let items = this.listItem.getItems(); // always get items from db
-
         if(!filter) return items;
         return this.utils.filterObjectItems(items, filter);
     }

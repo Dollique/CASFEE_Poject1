@@ -4,13 +4,20 @@ import {HBlistItems} from './handlebars.js';
 export class ListItemController {
     constructor() {
         this.listItem = new ListItem();
-        this.listItems = this.listItem.getItems();
         
-        this.hb = new HBlistItems(this.loadListItems());
+        this.hb = new HBlistItems();
     }
 
+    /*loadListItems() {
+        return this.listItem.getItems().then((succ) => {
+            this.hb = new HBlistItems(succ);
+        }, (err) => {
+            console.error("PROMISE ERR", err);
+        });
+    }*/
+
     loadListItems() {
-        return this.listItems;
+        return this.listItem.getItems();
     }
 
     initEventListeners() {
@@ -117,7 +124,7 @@ export class ListItemController {
         //console.log("target", value);
         if(this.listItem.validateListItem(value, field)) {
             if(this.listItem.setItem(value, id, field)) {
-                this.hb.renderList();
+                this.hb.renderList(this.loadListItems());
             }
         } else {
             console.warn("input validation error");

@@ -12,8 +12,8 @@ class Bootstrapper {
 
         this.listSettingsController = new ListSettingsController().initEventListeners();
 
-        this.hb = new HBlistItems(this.getItemList());
-        this.hb.renderList();
+        this.hb = new HBlistItems();
+        this.hb.renderList(this.getItemList());
     }
 
     getItemList() { // for handlebars

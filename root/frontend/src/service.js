@@ -55,6 +55,14 @@ export class Sort {
         return this.sort = JSON.parse(localStorage.getItem('sort'));
     }
 
+    getDefaultSort() {
+        let sort = {};
+        sort.sortby = 'name';
+        sort.order = 'asc';
+
+        return sort;
+    }
+
     writeSort(sortby, order) {
         let obj = new Object;
         obj.sortby = sortby;

@@ -1,6 +1,7 @@
 import {Filter} from '../service.js';
 import {Sort} from '../service.js';
 import {HBlistItems} from './handlebars.js';
+import {ListItem} from '../bl.js';
 
 export class ListSettingsController {
     constructor() {
@@ -18,6 +19,8 @@ export class ListSettingsController {
             'Prio, asc',
             'Prio, desc'
         ]};
+
+        this.listItem = new ListItem();
 
         this.hb = new HBlistItems();
     }
@@ -61,13 +64,13 @@ export class ListSettingsController {
         let sortedValue = this.getSortValue(value);
         this.sort.writeSort(sortedValue.sortby, sortedValue.order);
 
-        this.hb.renderList();
+        this.hb.renderList(this.listItem.getItems());
     }
 
     onChangeFilterDone(value) {
         this.filter.writeFilter('done', value);
         
-        this.hb.renderList();
+        this.hb.renderList(this.listItem.getItems());
         this.renderSettings();
     }
 
@@ -83,15 +86,16 @@ export class ListSettingsController {
 
     onFilterReset() {
         this.filter.resetFilter();
-        this.hb.renderList();
+        this.hb.renderList(this.listItem.getItems());
         this.renderSettings();
     }
 
     getCurrentSettings() {
+        let sorting = (this.sort.getSort() === null) ? null : this.getSortString(this.sort.getSort());
         let obj = {
             sortItems: this.sortItems.sortItems,
             filter: this.filter.getFilter(),
-            sort: this.getSortString(this.sort.getSort())
+            sort: sorting
         };
 
         return obj;
