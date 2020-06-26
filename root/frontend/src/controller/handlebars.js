@@ -14,27 +14,33 @@ export class HBlistItems {
         this.setHelpers(); // set helpers
     }
 
-    _setHBlistItems(items) {
-        let template = document.querySelector("#list-items").innerHTML;
+    // set list or menu HB
+    _setHBTemplate(content, menu = '') { // menu -> settings or config menu
+        let getID = (menu !== '') ? '#' + menu : '#list-items';
+
+        let template = document.querySelector(getID).innerHTML;
         let templateScript = Handlebars.compile(template);
         
-        let html = templateScript(items);
-        document.querySelector(".list__inner ul").textContent = "";
-        document.querySelector(".list__inner ul").insertAdjacentHTML("beforeend", html);
-    }
+        let html = templateScript(content);
 
+        if(menu !== '') {
+            document.querySelector("aside").innerHTML = html;
+        } else {
+            document.querySelector(".list__inner ul").textContent = "";
+            document.querySelector(".list__inner ul").insertAdjacentHTML("beforeend", html);
+        }
+    }
+    
     /* render the list sorted/filtered */
-    renderList(items = this.items) {
-        Promise.resolve(items).then((obj) => { // Promise.resolve makes sure then() works even if `items` is not a promise
-            obj = this._renderFilteredListItems(obj);
-            obj = this._renderSortedListItems(obj);
-            
-            return this._setHBlistItems(obj); 
-        }, (err) => {
-            console.log("PROMISE ERR", err);
-        });
-    }
+    async renderList(items = this.items) {
+        let obj = await items; // await changes items to a promise and resolves it.
 
+        obj = this._renderFilteredListItems(obj);
+        obj = this._renderSortedListItems(obj);
+        
+        return this._setHBTemplate(obj);
+    }
+    
     _renderSortedListItems(items) {     
         let sort = this.sort.getSort();
 
@@ -51,19 +57,10 @@ export class HBlistItems {
         return this.utils.filterObjectItems(items, filter);
     }
 
-
     /* Settings & Config */
     renderSettings(menu = "settings-menu", content) {
         document.querySelector("aside").classList.add("open");
-        return this._setHBSettings(menu, content);
-    }
-
-    _setHBSettings(menu, content) {
-        let template = document.querySelector("#"+ menu).innerHTML;
-        let templateScript = Handlebars.compile(template);
-        
-        let html = templateScript(content);
-        document.querySelector("aside").innerHTML = html;
+        return this._setHBTemplate(content, menu);
     }
 
 
@@ -74,8 +71,10 @@ export class HBlistItems {
             return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
         });
 
+        // sort helper
         Handlebars.registerHelper('sortValue', (val) => this.getSortVal(val));
 
+        // if Exists helper
         Handlebars.registerHelper('ifExists', function(obj, options) {
             return (obj != null) ? options.fn(this) : '';
         });

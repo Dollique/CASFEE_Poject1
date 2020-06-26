@@ -1,7 +1,7 @@
 import {Filter} from '../service.js';
 import {Sort} from '../service.js';
 import {HBlistItems} from './handlebars.js';
-import {ListItem} from '../bl.js';
+import {ListItem} from '../bl/listItem.js';
 
 export class ListSettingsController {
     constructor() {

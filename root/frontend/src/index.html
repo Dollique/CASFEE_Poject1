@@ -4,8 +4,12 @@
         <meta charset="utf-8">
         <title>CASFEE Project 1 - Tobias Marty</title>
         
-        <!--script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script-->
-        <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <script>
+            if (typeof Handlebars === 'undefined') { // if CDN is not available load local instance
+                document.write('<script src="../node_modules/handlebars/dist/handlebars.min.js"><\/script>');
+            }
+        </script>
         
         <script src="./bootstrapper.js" type="module"></script>
         

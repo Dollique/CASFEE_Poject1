@@ -1,5 +1,5 @@
 import {HBlistItems} from './handlebars.js';
-import {Style} from '../bl_style.js';
+import {Style} from '../bl/style.js';
 
 export class SiteConfigController {
     constructor() {

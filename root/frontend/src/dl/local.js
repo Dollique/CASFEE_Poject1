@@ -1,5 +1,4 @@
-// @todo: move this to NodeJS server
-import {Utils} from './utils.js';
+import {Utils} from '../utils.js';
 
 export class ListItemStorage {
     constructor() {

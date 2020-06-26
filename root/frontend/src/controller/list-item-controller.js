@@ -1,4 +1,4 @@
-import {ListItem} from '../bl.js';
+import {ListItem} from '../bl/listItem.js';
 import {HBlistItems} from './handlebars.js';
 
 export class ListItemController {
@@ -18,7 +18,8 @@ export class ListItemController {
         // new
         document.querySelector(".list__inner button").addEventListener("click", () => this.onAddListItemClick());
         
-        // edit
+        /* EDIT HANDLERS */
+
         document.querySelector(".list__inner ul").addEventListener("click", () => {
             // edit item
             if(event.target.tagName == "LABEL") {
@@ -41,8 +42,6 @@ export class ListItemController {
                         this.onEditListItemDateClick(event.target.parentNode.dataset.id);
                     }
                 }
-
-                
             }
 
             // edit due date
@@ -76,10 +75,10 @@ export class ListItemController {
 
     /* ACTIONS */
 
-    /* add list item */
+    // add list item
     onAddListItemClick() {
         if(!document.querySelector(".list__inner ul .addItemForm")) { // only execute once
-            let itemForm = this.listItem.addListItemForm();
+            let itemForm = this.addListItemForm();
             document.querySelector(".list__inner ul").insertAdjacentHTML('afterbegin', itemForm);
         }
     }
@@ -88,7 +87,7 @@ export class ListItemController {
     onEditListItemClick(id, value) {
         if(!document.querySelector(".list__inner ul li .editListItem")) { // only execute once
             id = Number(id);
-            let editForm = this.listItem.editListItemForm(value);
+            let editForm = this.editListItemForm(value);
             document.querySelector(".list__inner ul li[data-id='"+id+"'] label").outerHTML = editForm;
         }
     }
@@ -100,18 +99,18 @@ export class ListItemController {
 
     // edit prio
     onEditListItemPrioClick(id, value) {
-        let editForm = this.listItem.editListItemPrio(value);
+        let editForm = this.editListItemPrio(value);
         document.querySelector(".list__inner ul li[data-id='"+id+"'] .prio").style.display='none'; // hide with css, so due date click target still exists
         document.querySelector(".list__inner ul li[data-id='"+id+"'] .prio").insertAdjacentHTML('afterend', editForm);
     }
 
-    /* edit due date */
+    // edit due date
     onEditListItemDateClick(id, value = null) {
-        let editForm = this.listItem.editListItemDate(value);
+        let editForm = this.editListItemDate(value);
         document.querySelector(".list__inner ul li[data-id='"+id+"'] .dueDate").outerHTML = editForm;
     }
 
-    /* save edits */
+    // save edits
     onSetItemBlur(value, id = Number(), field = "name") {
         //console.log("target", value);
         if(this.listItem.validateListItem(value, field)) {
@@ -122,5 +121,31 @@ export class ListItemController {
             console.warn("input validation error");
         }
     }
+
+
+    /* GET HTML FORMS */
+
+    addListItemForm() {
+        let newEl = `<li class="addItemForm">
+             <input class="addNewItem" type="text" placeholder="New List Item" />
+         </li>`;
+ 
+         return newEl;
+     }
+ 
+     editListItemForm(value) {
+         let newEl = `<input class="editListItem" type="text" placeholder="${value}" value="${value}" />`;
+         return newEl;
+     }
+ 
+     editListItemPrio(value) {
+         let newEl = `<input class="editListItemPrio" type="number" min="1" max="3" value="${value}" />`;
+         return newEl;
+     }
+ 
+     editListItemDate(value) {
+         let newEl = `<input class="editListItemDate" type="date" value="${value}" />`;
+         return newEl;
+     }
 
 }
