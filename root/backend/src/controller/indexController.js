@@ -4,6 +4,11 @@ export class IndexController {
     constructor() {
         this.listDB = listItemsDB;
     }
+
+    async test(req, res) {
+        res.json({}); // return empty json
+        res.end();
+    }
     
     async add(req, res) {
         await this.listDB.addListItem(req.body.name);

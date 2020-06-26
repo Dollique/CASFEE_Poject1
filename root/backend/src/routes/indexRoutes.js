@@ -8,6 +8,7 @@ export class IndexRoutes {
         router.post("/list", indexController.add.bind(indexController));
         router.put("/list", indexController.put.bind(indexController));
         router.get("/list", indexController.list.bind(indexController));
+        router.get("/test", indexController.test.bind(indexController));
 
         return router;
     }

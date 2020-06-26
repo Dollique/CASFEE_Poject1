@@ -1,9 +1,9 @@
-import nedb from 'nedb';
+import Datastore from 'nedb';
 import {Utils} from '../utils.js';
 
 export class listDB {
     constructor() {
-        this.listItemsDB = new nedb({ filename: 'src/databases/lists.db', autoload: true });
+        this.listItemsDB = new Datastore({ filename: 'src/databases/lists.db', autoload: true });
         this.utils = new Utils;
     }
 
