@@ -4,7 +4,8 @@
 
 ## Getting Started
 
-My ToDo-List is based click on an element and after editing click outside of the form to save (blur/focusout).
+My ToDo-List is works like this:
+Click on an element and after editing click outside of the form to save (blur/focusout) or press enter.
 
 ### Browser Support
 
@@ -87,6 +88,9 @@ Nonetheless all ToDos and improvements are listed as follow:
 * The folder /root/frontend/src/to_be_implemented/ includes some code of 'list' classes. The idea was to be able to build multiple lists. I discarded the idea early in programming stage for timing issue.
 * /utils.js -> only one filter at a time works as expected.
 * the date is not checked for valid input
+* when using localStorage (optional) an CORS error is shown in console.
+* There is a json.parse() error just after fetch() which disappears on reload and doesn't affect functionality.
+* writing to NEDB forces a reload (even when I comment out `this.hb.renderList()`)
 * implement fetch abortion on test() request (https://stackoverflow.com/a/50101022/1402958)
 * put each handlebar tempalte into a hbs file, precompile and import them.
 

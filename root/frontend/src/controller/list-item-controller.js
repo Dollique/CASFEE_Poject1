@@ -54,23 +54,27 @@ export class ListItemController {
 
         /* BLUR HANDLERS (save) */
 
-        document.querySelector(".list__inner ul").addEventListener("focusout", () => { // event bubbling does not work on blur
-            if(event.target.className == "addNewItem") { // event bubbling
-                this.onSetItemBlur(event.target.value);
-            }
+        ['focusout', 'keypress'].forEach(function(e){ // set handlers for focusout and keypress
+            document.querySelector(".list__inner ul").addEventListener(e, (ev) => {
+                if(ev.keyCode === 13 || ev.type === 'focusout') { // 13 = 'Enter'
+                    if(event.target.className == "addNewItem") { // event bubbling
+                        this.onSetItemBlur(event.target.value);
+                    }
 
-            if(event.target.className == "editListItem") {
-                this.onSetItemBlur(event.target.value, event.target.parentNode.dataset.id);
-            }
-
-            if(event.target.className == "editListItemPrio") {
-                this.onSetItemBlur(event.target.value, event.target.parentNode.dataset.id, "prio");
-            }
-
-            if(event.target.className == "editListItemDate") {
-                this.onSetItemBlur(event.target.value, event.target.parentNode.dataset.id, "dueDate");
-            }
-        });
+                    if(event.target.className == "editListItem") {
+                        this.onSetItemBlur(event.target.value, event.target.parentNode.dataset.id);
+                    }
+        
+                    if(event.target.className == "editListItemPrio") {
+                        this.onSetItemBlur(event.target.value, event.target.parentNode.dataset.id, "prio");
+                    }
+        
+                    if(event.target.className == "editListItemDate") {
+                        this.onSetItemBlur(event.target.value, event.target.parentNode.dataset.id, "dueDate");
+                    }
+                }
+            });
+        }, this);
     }
 
     /* ACTIONS */

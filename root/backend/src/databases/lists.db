@@ -1,13 +1,6 @@
-{"id":6,"name":"urfevuiebv ok? nee","done":false,"createDate":"2020-06-24 19:49:07","finishDate":null,"dueDate":"2020-06-23","prio":"2","_id":"KszPmvGkNsQZi84V"}
-{"id":5,"name":"MUUUH!! wd yes!!","done":false,"createDate":"2020-06-23 17:45:06","finishDate":null,"dueDate":"2020-06-30","prio":"1","_id":"LgWCHlU7YGnTLoqs"}
-{"id":8,"name":"new test here thanks","done":false,"createDate":"2020-06-26 05:30:13","finishDate":null,"dueDate":null,"prio":1,"_id":"OVvsMjRqSozbccPt"}
-{"id":1,"name":"Test ff","done":false,"createDate":"2020-06-20 20:24:41","finishDate":null,"dueDate":null,"prio":1,"_id":"P8R7A3rdwFp7f994"}
-{"id":3,"name":"Bandprobe","done":true,"createDate":"2020-06-21 06:10:39","finishDate":null,"dueDate":"2020-06-21","prio":"3","_id":"PvHxERXCv5vqUxWD"}
-{"id":4,"name":"afwef","done":false,"createDate":"2020-06-21 06:20:09","finishDate":null,"dueDate":null,"prio":"3","_id":"h0Dxlu0tFsd24gWw"}
-{"id":2,"name":"adfwef","done":false,"createDate":"2020-06-20 20:26:42","finishDate":null,"dueDate":"2020-07-03","prio":"2","_id":"hzKOzxYpINvAVV3e"}
-{"id":7,"name":"qqqq","done":false,"createDate":"2020-06-26 05:23:26","finishDate":null,"dueDate":null,"prio":1,"_id":"pNM6WQXcmmfIaUzI"}
-{"id":4,"name":"afwef test","done":false,"createDate":"2020-06-21 06:20:09","finishDate":null,"dueDate":null,"prio":"3","_id":"h0Dxlu0tFsd24gWw"}
-{"id":6,"name":"urfevuiebv ok? nee","done":false,"createDate":"2020-06-24 19:49:07","finishDate":null,"dueDate":"2020-07-01","prio":"2","_id":"KszPmvGkNsQZi84V"}
-{"id":1,"name":"Test fffff","done":false,"createDate":"2020-06-20 20:24:41","finishDate":null,"dueDate":null,"prio":1,"_id":"P8R7A3rdwFp7f994"}
-{"id":4,"name":"afwef test aaa","done":false,"createDate":"2020-06-21 06:20:09","finishDate":null,"dueDate":null,"prio":"3","_id":"h0Dxlu0tFsd24gWw"}
-{"id":5,"name":"MUUUH!! wd yes!!","done":true,"createDate":"2020-06-23 17:45:06","finishDate":null,"dueDate":"2020-06-30","prio":"1","_id":"LgWCHlU7YGnTLoqs"}
+{"id":1,"name":"Test","done":false,"createDate":"2020-06-28 16:43:30","finishDate":null,"dueDate":null,"prio":1,"_id":"j8hvvuLJtpUtuqz5"}
+{"id":2,"name":"another test","done":false,"createDate":"2020-06-28 16:44:41","finishDate":null,"dueDate":null,"prio":1,"_id":"FqBZXGdR8qhlZKOY"}
+{"id":2,"name":"another test","done":false,"createDate":"2020-06-28 16:44:41","finishDate":null,"dueDate":"2020-06-28","prio":1,"_id":"FqBZXGdR8qhlZKOY"}
+{"id":2,"name":"another test","done":false,"createDate":"2020-06-28 16:44:41","finishDate":null,"dueDate":"2020-06-28","prio":"3","_id":"FqBZXGdR8qhlZKOY"}
+{"id":2,"name":"Abgabe Projekt 1","done":false,"createDate":"2020-06-28 16:44:41","finishDate":null,"dueDate":"2020-06-28","prio":"3","_id":"FqBZXGdR8qhlZKOY"}
+{"id":2,"name":"Abgabe Projekt 1","done":true,"createDate":"2020-06-28 16:44:41","finishDate":null,"dueDate":"2020-06-28","prio":"3","_id":"FqBZXGdR8qhlZKOY"}

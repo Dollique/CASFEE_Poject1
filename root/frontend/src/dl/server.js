@@ -9,11 +9,13 @@ export class ListItemStorage {
     }
 
     async fetchData(method, body = null, route = '/list') {
-        const rawResponse = await fetch(this.server + route, {
+        let options = {
             method: method,
-            headers: { 'Content-Type': 'application/json' },
-            body: body
-        });
+            headers: { 'Content-Type': 'application/json' }
+        };
+        if(body !== null) options.body = body;
+
+        const rawResponse = await fetch(this.server + route, options);
         return await rawResponse.json(); // json() returns another promise
     }
 
