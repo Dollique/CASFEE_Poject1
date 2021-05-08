@@ -1,7 +1,7 @@
 {
   "name": "casfee_project1_package",
   "dependencies": {
-    "handlebars": "^4.7.6"
+    "handlebars": "^4.7.7"
   },
   "devDependencies": {
     "eslint": "^7.0.0"
